@@ -5,8 +5,9 @@
 // =============================================================================
 
 using System.Collections.Generic;
-using UnityEngine;
 using TMPro;
+using Unity.VisualScripting;
+using UnityEngine;
 
 public class Assignment_DirectionAlert : MonoBehaviour
 {
@@ -68,6 +69,9 @@ public class Assignment_DirectionAlert : MonoBehaviour
                 direction = dir,
                 distance = distance
             });
+
+             
+
         }
 
         UpdateUI();
@@ -75,28 +79,22 @@ public class Assignment_DirectionAlert : MonoBehaviour
 
     private Direction GetDirection(Transform enemy)
     {
+        Vector3 toEnemy = (enemy.position - transform.position).normalized;// 적으로 향하는 방향 벡터
 
-        
-        Vector3 toEnemy = (enemy.position - transform.position).normalized;
-        // TODO
-        float dot = Vector3.Dot(transform.forward, toEnemy);
+        float dot = Vector3.Dot(transform.forward, toEnemy);                 //전방/후방 판별
+        Vector3 cross = Vector3.Cross(transform.forward, toEnemy);          // 좌/우 판별
 
-        Vector3 cross = Vector3.Cross(transform.forward, toEnemy);
 
-        //전후좌우 판단 기준 조건문 작성
-        if (dot > 0.5f)
-
+        // dot 값이 0.5 이상이면 전방, -0.5 이하이면 후방으로 간주
+        if (dot > 0.5f)//
             return Direction.Front;
-        
-
-
         else if (dot < -0.5f)
             return Direction.Back;
+        // dot이 -0.5 ~ 0.5 사이면 좌/우 판별
         else if (cross.y > 0)
-            return Direction.Left;
+            return Direction.Right;   
         else if (cross.y < 0)
-            return Direction.Right;
-
+            return Direction.Left;   
 
         return Direction.None;
     }
