@@ -98,7 +98,7 @@ public class Assignment_BulletHell : MonoBehaviour
     private Vector3 CalculateSpiralDirection(int index, int total)
     {
 
-        float angle = (360f / total) * index + (Time.time * spiralTurnSpeed * Mathf.Rad2Deg); //각도 계산
+        float angle = (360f / total) * index + (Time.time * Mathf.Rad2Deg); //각도 계산
         float radians = angle * Mathf.Deg2Rad; //라디안 변환
 
         return new Vector3(Mathf.Cos(radians), 0f, Mathf.Sin(radians)); //방향 벡터 계산
