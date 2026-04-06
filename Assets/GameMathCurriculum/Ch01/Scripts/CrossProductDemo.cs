@@ -25,8 +25,8 @@ public class CrossProductDemo : MonoBehaviour
     [SerializeField] private TMP_Text uiInfoText;
 
     [Header("=== 디버그 정보 (읽기 전용) ===")]
-    [SerializeField] private Vector3 crossProduct;
-    [SerializeField] private float crossY;
+    [SerializeField] private Vector3 crossProduct;// 외적 결과 벡터
+    [SerializeField] private float crossY;// 외적 결과의 Y 성분 (좌/우 판별용)
     [SerializeField] private string directionResult = "";
 
     private void Start()
@@ -58,8 +58,24 @@ public class CrossProductDemo : MonoBehaviour
 
     private string CheckLeftOrRight(Transform targetTransform)
     {
+        Vector3 tgt = targetTransform.position - transform.position;
+        crossProduct = Vector3.Cross(transform.forward, tgt);
+        crossY = 0f; // Y축 성분만으로 좌/우 판별
+
+        if(crossY > 0f)// crossProduct.y가 양수면 오른쪽, 음수면 왼쪽
+        {
+            return "오른쪽";
+        }
+        if(crossY < 0f)
+        { 
+            return "왼쪽";
+        }
+        else
+        {
+            return "정면 or 후면";
+        }
         // TODO
-        return "";
+        
     }
 
     private void OnDrawGizmos()

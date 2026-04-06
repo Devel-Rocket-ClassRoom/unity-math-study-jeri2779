@@ -71,6 +71,19 @@ public class Assignment_LissajousCurve : MonoBehaviour
         // initialPosition을 기준으로 X, Z 오프셋을 더해 최종 위치를 반환하세요.
 
         // TODO: 위 공식을 구현하세요
+        //2축 계산
+        
+        float offsetX = amplitudeX * Mathf.Sin(2 * Mathf.PI * frequencyX * time + phaseX * Mathf.Deg2Rad);
+        float offsetZ = amplitudeZ * Mathf.Sin(2 * Mathf.PI * frequencyZ * time + phaseZ * Mathf.Deg2Rad);
+
+        initialPosition = new Vector3(offsetX, 0f, offsetZ);
+
+
+
+
+
+
+
         return initialPosition;
     }
 
