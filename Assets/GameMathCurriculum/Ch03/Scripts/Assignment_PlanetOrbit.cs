@@ -4,8 +4,9 @@
 // Matrix4x4.TRS와 MultiplyPoint3x4로 행성-위성 궤도를 구현하는 시스템
 // =============================================================================
 
-using UnityEngine;
 using TMPro;
+using UnityEngine;
+using static UnityEngine.GraphicsBuffer;
 public class Assignment_PlanetOrbit : MonoBehaviour
 {
 
@@ -65,8 +66,8 @@ public class Assignment_PlanetOrbit : MonoBehaviour
         Matrix4x4 planetOrbitMatrix = Matrix4x4.TRS(orbitCenter, Quaternion.Euler(0f, planetAngle, 0f), Vector3.one);
         transform.position = planetOrbitMatrix.MultiplyPoint(new Vector3(planetOrbitRadius, 0f, 0f));
 
-        Matrix4x4 satelliteOrbitMatrix = Matrix4x4.TRS(transform.position, Quaternion.Euler(0f, satelliteAngle, 0f), Vector3.one);
 
+        Matrix4x4 satelliteOrbitMatrix = Matrix4x4.TRS(transform.position, Quaternion.Euler(0f, satelliteAngle, 0f), Vector3.one);
         satellite.position = satelliteOrbitMatrix.MultiplyPoint(new Vector3(satelliteOrbitRadius, 0f, 0f));
 
         planetWorldPos = transform.position;
@@ -95,6 +96,13 @@ public class Assignment_PlanetOrbit : MonoBehaviour
 
         //if(satellite != null)
         //    satellite.position = satelliteWorldPos; // 위성의 월드 위치 업데이트
+        
+
+    
+
+ 
+
+
 
 
 

@@ -467,6 +467,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 815738780}
   m_CullTransparentMesh: 1
+--- !u!1 &1018457621 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7555716937793688069, guid: 75a35734ba575ae4eabf92fbbc1391e4, type: 3}
+  m_PrefabInstance: {fileID: 1027235861}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1027235861
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -489,7 +494,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8861019553619343051, guid: 75a35734ba575ae4eabf92fbbc1391e4, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1
+      value: 1.66
       objectReference: {fileID: 0}
     - target: {fileID: 8861019553619343051, guid: 75a35734ba575ae4eabf92fbbc1391e4, type: 3}
       propertyPath: m_LocalPosition.z
@@ -651,13 +656,21 @@ PrefabInstance:
       propertyPath: uiText
       value: 
       objectReference: {fileID: 697674738}
+    - target: {fileID: 6970000621733122294, guid: c03da01c00aaf2645b81c5ed62942e04, type: 3}
+      propertyPath: trailLength
+      value: 36
+      objectReference: {fileID: 0}
+    - target: {fileID: 6970000621733122294, guid: c03da01c00aaf2645b81c5ed62942e04, type: 3}
+      propertyPath: rotationAngle
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8965710035645752671, guid: c03da01c00aaf2645b81c5ed62942e04, type: 3}
       propertyPath: m_Name
       value: TrailDemo
       objectReference: {fileID: 0}
     - target: {fileID: 8965710035645752671, guid: c03da01c00aaf2645b81c5ed62942e04, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -680,6 +693,10 @@ PrefabInstance:
       propertyPath: satellite
       value: 
       objectReference: {fileID: 1027235862}
+    - target: {fileID: 6388579112842196431, guid: 1eb360911d73f8644bacdc56387dd2c0, type: 3}
+      propertyPath: satellitePrefab
+      value: 
+      objectReference: {fileID: 1018457621}
     - target: {fileID: 7801772526103868057, guid: 1eb360911d73f8644bacdc56387dd2c0, type: 3}
       propertyPath: m_Name
       value: Planet
@@ -694,7 +711,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7843302744788516079, guid: 1eb360911d73f8644bacdc56387dd2c0, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1
+      value: 1.89
       objectReference: {fileID: 0}
     - target: {fileID: 7843302744788516079, guid: 1eb360911d73f8644bacdc56387dd2c0, type: 3}
       propertyPath: m_LocalPosition.z
