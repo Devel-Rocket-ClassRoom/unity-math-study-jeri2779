@@ -265,16 +265,12 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 964295918}
     - target: {fileID: 1592315350122844830, guid: 8add092940f04e142a97aa71624fbce8, type: 3}
-      propertyPath: fanAngle
-      value: 30
-      objectReference: {fileID: 0}
-    - target: {fileID: 1592315350122844830, guid: 8add092940f04e142a97aa71624fbce8, type: 3}
       propertyPath: bulletCount
-      value: 12
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 1592315350122844830, guid: 8add092940f04e142a97aa71624fbce8, type: 3}
       propertyPath: bulletSpeed
-      value: 5.8
+      value: 4.7
       objectReference: {fileID: 0}
     - target: {fileID: 1592315350122844830, guid: 8add092940f04e142a97aa71624fbce8, type: 3}
       propertyPath: patternType
@@ -284,14 +280,6 @@ PrefabInstance:
       propertyPath: bulletPrefab
       value: 
       objectReference: {fileID: 5460869111871097844, guid: 4079fb5d6db8a9946808bdeae599fb5c, type: 3}
-    - target: {fileID: 1592315350122844830, guid: 8add092940f04e142a97aa71624fbce8, type: 3}
-      propertyPath: fireInterval
-      value: 1.04
-      objectReference: {fileID: 0}
-    - target: {fileID: 1592315350122844830, guid: 8add092940f04e142a97aa71624fbce8, type: 3}
-      propertyPath: spiralTurnSpeed
-      value: 0.5
-      objectReference: {fileID: 0}
     - target: {fileID: 1740885042269419993, guid: 8add092940f04e142a97aa71624fbce8, type: 3}
       propertyPath: m_LocalPosition.x
       value: -5

@@ -120,6 +120,7 @@ public class Assignment_BulletHell : MonoBehaviour
          
     }
     
+    
     private void UpdateDebugUI()
     {
         if (debugUI == null) return;
