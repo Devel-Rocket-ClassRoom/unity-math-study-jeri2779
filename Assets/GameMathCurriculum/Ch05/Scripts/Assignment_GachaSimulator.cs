@@ -130,13 +130,15 @@ public class Assignment_GachaSimulator : MonoBehaviour
          * 
          */
         totalPulls++;// 총 뽑기 수 증가
-        currentPityCount++;// 현재 천장 카운트 증가
 
         currentEffectiveRate = baseRate;// 기본 확률로 초기화
         if (currentPityCount >= softPityStart)
         {
-            float pityProgress = (float)(currentPityCount - softPityStart) / (hardPity - softPityStart);
-            currentEffectiveRate =Mathf.Lerp(baseRate, 1f, pityProgress);
+            //float pityProgress = (float)(currentPityCount - softPityStart) / (hardPity - softPityStart);
+            //currentEffectiveRate =Mathf.Lerp(baseRate, 1f, pityProgress);
+
+            float rateIncrease = Mathf.InverseLerp(softPityStart, hardPity, currentPityCount);
+            currentEffectiveRate = Mathf.Lerp(baseRate, 1f, rateIncrease);
         }
 
         if (currentPityCount >= hardPity)
@@ -144,6 +146,7 @@ public class Assignment_GachaSimulator : MonoBehaviour
             currentEffectiveRate = 1f;
         }
 
+        currentPityCount++;// 현재 천장 카운트 증가
 
          
         bool isSSR = Random.value < currentEffectiveRate;
