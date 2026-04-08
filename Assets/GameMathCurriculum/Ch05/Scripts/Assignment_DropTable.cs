@@ -99,7 +99,7 @@ public class Assignment_DropTable : MonoBehaviour
             return;
         }
 
-        float randomValue = Random.Range(0.0f, totalWeight);
+        float randomValue = Random.Range(0, totalWeight);
         float cumulative = 0f;
         for(int i = 0; i < items.Length; i++)//드롭 결과 기록
         {
@@ -119,8 +119,7 @@ public class Assignment_DropTable : MonoBehaviour
         //        totalWeight += item.weight;
         //    }
         //}
-
-
+    
         if(dropHistory.Count > MAX_HISTORY )
         {
             dropHistory.RemoveAt(0);
