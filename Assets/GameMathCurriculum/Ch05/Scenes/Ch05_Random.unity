@@ -1553,6 +1553,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: DropTableManager
       objectReference: {fileID: 0}
+    - target: {fileID: 7351640142143313609, guid: a6031942cca7463469e1650489c23560, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

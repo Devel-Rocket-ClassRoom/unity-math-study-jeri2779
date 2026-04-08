@@ -146,7 +146,6 @@ public class Assignment_GachaSimulator : MonoBehaviour
             currentEffectiveRate = 1f;
         }
 
-        currentPityCount++;// 현재 천장 카운트 증가
 
          
         bool isSSR = Random.value < currentEffectiveRate;
@@ -155,12 +154,17 @@ public class Assignment_GachaSimulator : MonoBehaviour
         {
             pullHistory.RemoveAt(pullHistory.Count - 1); // 가장 오래된 항목(맨 뒤) 제거
         }
+       
         if(isSSR)// SSR 획득 시 통계 업데이트
         {
             totalSSRs++;
             ssrPityList.Insert(0,currentPityCount);
             
             currentPityCount = 0;
+        }
+        else
+        {
+            currentPityCount++; 
         }
 
         UpdateUI();
