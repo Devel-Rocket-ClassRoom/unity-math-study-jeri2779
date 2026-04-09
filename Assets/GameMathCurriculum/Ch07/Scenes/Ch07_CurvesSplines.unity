@@ -311,7 +311,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 236876100}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -735,7 +735,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 859482231}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -1094,11 +1094,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BeizierRandomMover
   spawnCount: 10
-  startPos: {x: -3, y: 0, z: 0}
-  endPos: {x: 3, y: 3, z: 0}
-  controlPointRange: 5
+  sphereSize: 0.29999998
+  startPointTransform: {fileID: 236876101}
+  endPointTransform: {fileID: 859482232}
+  checkPointRangeMin: -5
+  checkPointRangeMax: 5
   durationMin: 1
   durationMax: 3
+  trailTime: 0.5
+  trailWidth: 0.1
+  showSphereMesh: 1
+  p1Point: 0.33
+  p2Point: 0.66
+  trailMaterial: {fileID: 10306, guid: 0000000000000000f000000000000000, type: 0}
 --- !u!4 &1276386422
 Transform:
   m_ObjectHideFlags: 0
@@ -1108,7 +1116,7 @@ Transform:
   m_GameObject: {fileID: 1276386420}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 15.22, y: 1.16, z: 0.76623}
+  m_LocalPosition: {x: 15.22, y: 7.5, z: 0.76623}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1193,7 +1201,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1323855487
 Transform:
   m_ObjectHideFlags: 0
@@ -1302,10 +1310,13 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 
-  m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 55aa32ed9e380e34abc92f2c398a3f97, type: 2}
-  m_sharedMaterial: {fileID: -2253834616945413019, guid: 55aa32ed9e380e34abc92f2c398a3f97, type: 2}
+  m_text: ">roloc/<\uC808\uC870 \uB3C4\uC18D \uBCC4\uAC04\uAD6C \uB85CevruCnoitaminA>wolley=roloc<\n\r\n\r\uCD080.6
+    :\uAE30\uC8FC\n\r\xD740.1 :\uC728\uBC30 \uB3C4\uC18D\n\r04.0 :Tlabolg\n\r\uAC1C5
+    :\uC2A4\uBC15 / \uAC1C5 :\uD2B8\uC778\uD3EC\uC774\uC6E8\n\r\uC5B4\uC774\uBCA0\uCEE8
+    \uC778\uB77C\uD50C\uC2A4 ]royevnoCenilpS_tnemngissA["
+  m_isRightToLeft: 1
+  m_fontAsset: {fileID: 11400000, guid: 173832a6eb54e9549bd9e42213cdd4fe, type: 2}
+  m_sharedMaterial: {fileID: 3866381114057573719, guid: 173832a6eb54e9549bd9e42213cdd4fe, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -1614,7 +1625,7 @@ Canvas:
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
   m_VertexColorAlwaysGammaSpace: 0
-  m_AdditionalShaderChannelsFlag: 0
+  m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
   m_SortingOrder: 0
@@ -1901,7 +1912,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1752775145
 Transform:
   m_ObjectHideFlags: 0
@@ -2127,7 +2138,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 649308663339417987, guid: 3c748a888c0e7d74dbb54d475cafca6b, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2041040197625500462, guid: 3c748a888c0e7d74dbb54d475cafca6b, type: 3}
       propertyPath: uiInfoText
@@ -2223,11 +2234,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2041040197625500462, guid: 3c748a888c0e7d74dbb54d475cafca6b, type: 3}
       propertyPath: speedCurve.m_Curve.Array.data[1].inSlope
-      value: -0.13179752
+      value: 0.2066029
       objectReference: {fileID: 0}
     - target: {fileID: 2041040197625500462, guid: 3c748a888c0e7d74dbb54d475cafca6b, type: 3}
       propertyPath: speedCurve.m_Curve.Array.data[2].inSlope
-      value: -0.53863317
+      value: 0.12115375
       objectReference: {fileID: 0}
     - target: {fileID: 2041040197625500462, guid: 3c748a888c0e7d74dbb54d475cafca6b, type: 3}
       propertyPath: speedCurve.m_Curve.Array.data[0].outSlope
@@ -2235,11 +2246,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2041040197625500462, guid: 3c748a888c0e7d74dbb54d475cafca6b, type: 3}
       propertyPath: speedCurve.m_Curve.Array.data[1].inWeight
-      value: 0.33333334
+      value: 0.25704423
       objectReference: {fileID: 0}
     - target: {fileID: 2041040197625500462, guid: 3c748a888c0e7d74dbb54d475cafca6b, type: 3}
       propertyPath: speedCurve.m_Curve.Array.data[1].outSlope
-      value: -0.13179752
+      value: 0.2066029
       objectReference: {fileID: 0}
     - target: {fileID: 2041040197625500462, guid: 3c748a888c0e7d74dbb54d475cafca6b, type: 3}
       propertyPath: speedCurve.m_Curve.Array.data[2].inWeight
@@ -2247,7 +2258,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2041040197625500462, guid: 3c748a888c0e7d74dbb54d475cafca6b, type: 3}
       propertyPath: speedCurve.m_Curve.Array.data[2].outSlope
-      value: -0.53863317
+      value: 0.12115375
       objectReference: {fileID: 0}
     - target: {fileID: 2041040197625500462, guid: 3c748a888c0e7d74dbb54d475cafca6b, type: 3}
       propertyPath: speedCurve.m_Curve.Array.data[0].outWeight
@@ -2259,7 +2270,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2041040197625500462, guid: 3c748a888c0e7d74dbb54d475cafca6b, type: 3}
       propertyPath: speedCurve.m_Curve.Array.data[2].outWeight
-      value: 0.33333334
+      value: 0.3296615
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

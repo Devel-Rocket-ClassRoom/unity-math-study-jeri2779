@@ -39,55 +39,49 @@ public class Assignment_SplineConveyor : MonoBehaviour
 
             Catmull-Rom 스플라인 경로 위에 여러 박스를 일정 간격으로 배치하고, 
             4장에서 배운 `AnimationCurve` 로 구간별 속도를 조절하며 순환 이동시킨다.
-         */
-        /*
-         * 
-           ["Update() 호출"] --> B["globalT 증가\n(speedCurve 배율 적용)"]
-            ["globalT = Mathf.Repeat(globalT, 1f)\n(0~1 루프)"]
-            ["각 박스 i에 대해\nboxT = globalT + i/boxes.Length"]
-            ["boxT = Mathf.Repeat(boxT, 1f)"]
-            ["EvaluateSpline(waypoints, boxT)\n→ 위치 설정"]
-             ["접선 방향으로 회전\n(수치 미분)"]
-             
-         */
+        */
+  
         // TODO
-        currentSpeedMultiplier = speedCurve.Evaluate(globalT);// globalT에 대한 속도 배율 계산
+        //currentSpeedMultiplier = speedCurve.Evaluate(globalT);                  // globalT에 대한 속도 배율 계산
+        float speed = speedCurve.Evaluate(globalT);
 
-        globalT += (Time.deltaTime / cycleDuration) * currentSpeedMultiplier; // globalT 업데이트
-        globalT = Mathf.Repeat(globalT, 1f); // globalT를 0~1 범위로 루프
+        //globalT += (Time.deltaTime / cycleDuration) * currentSpeedMultiplier;   // globalT 업데이트
+        globalT += (1f/cycleDuration) * speed * Time.deltaTime; // 속도 적용한 globalT 업데이트
+        globalT = Mathf.Repeat(globalT, 1f);                                    // globalT를 0~1 범위로 루프
 
         if (boxes == null || boxes.Length == 0) return;
         if (waypoints == null || waypoints.Length < 2) return;
 
-        float boxSpacing = 1f / boxes.Length; // 박스 간 간격 계산 
-        float zeroNum = 0.001f; // 수치 미분을 위한 작은 값
+        float boxSpacing = 1f / boxes.Length;                                   // 박스 간 간격 계산 
+        //float zeroNum = 0.001f;                                                 // 수치 미분을 위한 작은 값
 
         for (int i = 0; i < boxes.Length; i++)
         {
 
-            float boxT = Mathf.Repeat(globalT + boxSpacing * i, 1f); // 각 박스의 boxT 계산
+            //float boxT = Mathf.Repeat(globalT + boxSpacing * i, 1f);            // 각 박스의 boxT 계산
 
-            boxes[i].transform.position = EvaluateSpline(waypoints, boxT); // boxT에 따른 위치 설정
+            //boxes[i].transform.position = EvaluateSpline(waypoints, boxT);      // boxT에 따른 위치 설정
 
-            Vector3 tangent = EvaluateSpline(waypoints, Mathf.Repeat(boxT + zeroNum, 1f)) - 
-                              EvaluateSpline(waypoints, Mathf.Repeat(boxT - zeroNum, 1f)); // 수치 미분으로 접선 계산
+            //Vector3 tangent = EvaluateSpline(waypoints, Mathf.Repeat(boxT + zeroNum, 1f)) - 
+            //                  EvaluateSpline(waypoints, Mathf.Repeat(boxT - zeroNum, 1f)); // 수치 미분으로 접선 계산
 
-            if(tangent != Vector3.zero)
-            {
-                boxes[i].transform.rotation = Quaternion.LookRotation(tangent.normalized); // 접선 방향으로 회전
-            }
+            //if(tangent != Vector3.zero)
+            //{
+            //    boxes[i].transform.rotation = Quaternion.LookRotation(tangent.normalized); // 접선 방향으로 회전
+            //}
+
+            float spacing = 1f / boxes.Length;
+            float nextT = globalT + (i * spacing);
+
+            nextT = Mathf.Repeat(nextT, 1f);
+
+            Vector3 targetPos = EvaluateSpline(waypoints, nextT);
+            boxes[i].position = targetPos;
+
 
         }
 
-
-
-
-
-
-
-
-
-
+        currentSpeedMultiplier = speedCurve.Evaluate(globalT); // globalT에 대한 속도 배율 계산
 
         UpdateUI();
     }

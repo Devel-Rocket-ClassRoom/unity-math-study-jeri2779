@@ -70,7 +70,10 @@ public class BeizierRandomMover : MonoBehaviour
             trail.endWidth = trail.startWidth * 0.2f;               //트레일 끝 두꼐 설정
             trail.material = trailMaterial;                         //트레일 머티리얼 설정
             trail.startColor = randomColor;                         //트레일 시작 색상 설정
-            trail.endColor = new Color(randomColor.r, randomColor.g, randomColor.b, 0f); //트레일 끝 색상 설정
+            trail.endColor = new Color
+               (randomColor.r,
+                randomColor.g, 
+                randomColor.b, 0f);                                 //트레일 끝 색상 설정
             BezierObject agent = sphere.AddComponent<BezierObject>();
 
             Vector3 p1 = Vector3.Lerp(actualStartPos, actualEndPos, p1Point) + RandomPoint();  //1번째 체크포인트 계산
