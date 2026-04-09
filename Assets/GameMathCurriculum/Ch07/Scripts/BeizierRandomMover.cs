@@ -11,9 +11,9 @@ public class BeizierRandomMover : MonoBehaviour
     [SerializeField] private Transform startPointTransform;
     [SerializeField] private Transform endPointTransform;
 
-    [Header("=== 제어점 랜덤 범위 ===")]
-    [SerializeField] private float checkPointRangeMin = 1f;
-    [SerializeField] private float checkPointRangeMax = 10f;
+    [Header("=== 중간점 랜덤 범위 ===")]
+    [SerializeField] private float checkPointRangeMin = -5f;
+    [SerializeField] private float checkPointRangeMax = 5f;
 
     [Header("=== 이동 시간 ===")]
     [Range(0.5f, 10f)]
@@ -31,7 +31,13 @@ public class BeizierRandomMover : MonoBehaviour
 
     [Header("=== 가시성 설정 ===")]
     [SerializeField] private bool showSphereMesh = true;
-  
+    [Header("=== 체크포인트 비율 ===")]
+    [Range(0f, 1f)]
+    [SerializeField] private float p1Point = 0.33f;
+
+    [Range(0f, 1f)]
+    [SerializeField] private float p2Point = 0.66f;
+
     [SerializeField] private Material trailMaterial;
 
     private void Update()
@@ -67,11 +73,11 @@ public class BeizierRandomMover : MonoBehaviour
             trail.endColor = new Color(randomColor.r, randomColor.g, randomColor.b, 0f); //트레일 끝 색상 설정
             BezierObject agent = sphere.AddComponent<BezierObject>();
 
-            Vector3 p1 = actualStartPos + RandomPoint();           //1번째 체크포인트 계산
-            Vector3 p2 = actualEndPos + RandomPoint();             //2번째 체크포인트 계산
+            Vector3 p1 = Vector3.Lerp(actualStartPos, actualEndPos, p1Point) + RandomPoint();  //1번째 체크포인트 계산
+            Vector3 p2 = Vector3.Lerp(actualStartPos, actualEndPos, p2Point) + RandomPoint();  //2번째 체크포인트 계산
             float duration = Random.Range(durationMin, durationMax);//이동 시간 랜덤 설정
 
-            agent.Initialize(actualStartPos, p1, p2, actualEndPos, duration);//BezierAgent 초기화
+            agent.Initialize(actualStartPos, p1, p2, actualEndPos, duration);//BezierObject 초기화
         }
     }
     private Vector3 RandomPoint() => new Vector3(
