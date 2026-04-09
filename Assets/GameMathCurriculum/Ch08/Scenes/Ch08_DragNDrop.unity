@@ -564,7 +564,7 @@ Transform:
   m_GameObject: {fileID: 1637877087}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 22.124, y: 3.528, z: 13.89}
+  m_LocalPosition: {x: 22.124, y: 3.528, z: 15.59}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -585,7 +585,7 @@ GameObject:
   - component: {fileID: 1752416900}
   - component: {fileID: 1752416905}
   m_Layer: 7
-  m_Name: DragObject
+  m_Name: DragObject 0
   m_TagString: DragObject
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1106,7 +1106,7 @@ Transform:
   m_GameObject: {fileID: 1907724460}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 22.124, y: 3.528, z: 13.89}
+  m_LocalPosition: {x: 22.124, y: 3.528, z: 11.81}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

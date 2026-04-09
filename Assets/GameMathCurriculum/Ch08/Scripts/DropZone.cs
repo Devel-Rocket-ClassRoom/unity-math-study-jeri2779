@@ -4,7 +4,7 @@ public class DropZone : MonoBehaviour
 {
     private bool isOnjectInZone = false;
     private GameObject target;
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+ 
  
 
     public bool IsInZone()
@@ -26,7 +26,7 @@ public class DropZone : MonoBehaviour
             Collider col = GetComponent<Collider>();
             if (col != null)
             {
-                centerPosition.y = col.bounds.max.y;
+                centerPosition.y = col.bounds.max.y;//콜라이더 y값의 제일 위로 설정 
 
             }
             return centerPosition;

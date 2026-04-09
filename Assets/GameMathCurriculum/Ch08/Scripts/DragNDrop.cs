@@ -33,37 +33,37 @@ public class DragNDrop : MonoBehaviour
         rb.isKinematic = true;
     }
 
-    // Update is called once per frame
+    
     void Update()
     {
         //switch문으로 상태에 따른 행동을 구분
         switch(currentState)
         {
             case state.Idle:
-                HandleIdle();
+                HandleIdle(); //마우스 클릭시 Dragging 상태로 전환
                 break;
             case state.Dragging:
-                HandleDragging();
+                HandleDragging(); // 마우스 위치따라 이동 , 떼면 Dropping 상태전환
                 break;
             case state.Dropping:
-                HandleDropping();
-                
+                HandleDropping();// SmoothDamp이용하여 이동, 도착하면 Idle 상태전환
+
                 break;
         }   
     }
-
+    //ray는 총 세 번 발사됨. 첫 번째는 드래그 시작 시, 두 번째는 드래그 중, 세 번째는 드롭 후 이동 시
     private void HandleIdle()
     {
         if (Input.GetMouseButtonDown(0))
         {
-            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);//DragObject용 ray.
             RaycastHit hit;
            
-            if (Physics.Raycast(ray, out hit, Mathf.Infinity, DragObject))
+            if (Physics.Raycast(ray, out hit, Mathf.Infinity, DragObject))// 레이캐스트 확인
             {
                 if (hit.collider.gameObject != gameObject) return;
 
-                //드롭존 밖에서 시작할 때만 복귀 지점 갱신
+                //dropzone 밖에서 시작할 때 복귀 지점 갱신
                 if (!dropZone.IsInZone())
                     startPos = transform.position;
 
@@ -75,7 +75,7 @@ public class DragNDrop : MonoBehaviour
 
     private void HandleDragging()
     {
-        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);//Terrain용 ray
         RaycastHit hit;
         if (Physics.Raycast(ray, out hit, Mathf.Infinity, terrainLayer))
         {
@@ -86,10 +86,10 @@ public class DragNDrop : MonoBehaviour
         if (Input.GetMouseButtonUp(0))
         {
             smoothDampVelocity = Vector3.zero;
-            currentState = state.Dropping;
-            if(dropZone.IsInZone())
+            currentState = state.Dropping;   //드롭 상태로 전환
+            if (dropZone.IsInZone())
             {
-                tgtPos = dropZone.GetCenterPosition() + Vector3.up * yOffset;
+                tgtPos = dropZone.GetCenterPosition() + Vector3.up * yOffset;       //존 중심으로 이동
             }
             else
             {
@@ -103,23 +103,23 @@ public class DragNDrop : MonoBehaviour
         Vector3 smoothed = Vector3.SmoothDamp(transform.position, tgtPos, ref smoothDampVelocity, returnDuration);
 
         //터레인 표면을 따라 이동
-        Ray ray = new Ray(smoothed + Vector3.up * 100f, Vector3.down);
+        Ray ray = new Ray(smoothed + Vector3.up * 100f, Vector3.down);//
         if (Physics.Raycast(ray, out RaycastHit hit, Mathf.Infinity, terrainLayer))
         {
-            smoothed.y = hit.point.y + yOffset;
+            smoothed.y = hit.point.y + yOffset;                     //  y값 조정
         }
 
         transform.position = smoothed;
 
-        //Y는 터레인 보정으로 미세하게 달라지므로 XZ 거리만으로 도착 판정
-        float xzDist = Vector2.Distance(
+        //Y는 terrain 표면에 맞춰 조정되므로 xz만 계산
+        float checkDist = Vector2.Distance(
             new Vector2(transform.position.x, transform.position.z),
             new Vector2(tgtPos.x, tgtPos.z));
 
-        if (xzDist < 0.01f)
+        if (checkDist < 0.01f)                     //smoothed가 tgtPos에 거의 도달했는지 확인(임계값 체크용)
         {
-            transform.position = tgtPos;
-            currentState = state.Idle;
+            transform.position = tgtPos;        //정확히 tgtPos로 이동
+            currentState = state.Idle;          //Idle 상태전환
         }
     }
 
