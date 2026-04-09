@@ -1,0 +1,54 @@
+using UnityEngine;
+
+public class DropZone : MonoBehaviour
+{
+    private bool isOnjectInZone = false;
+    private GameObject target;
+    // Start is called once before the first execution of Update after the MonoBehaviour is created
+ 
+
+    public bool IsInZone()
+    {
+        if(isOnjectInZone)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+    public Vector3 GetCenterPosition()
+    {
+        if (isOnjectInZone)
+        {
+            Vector3 centerPosition = transform.position;
+            Collider col = GetComponent<Collider>();
+            if (col != null)
+            {
+                centerPosition.y = col.bounds.max.y;
+
+            }
+            return centerPosition;
+
+        }
+        return transform.position;
+    }
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("DragObject"))
+        {
+            isOnjectInZone = true;
+            Debug.Log("Object entered the drop zone.");
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.CompareTag("DragObject"))
+        {
+            isOnjectInZone = false;
+            Debug.Log("Object exited the drop zone.");
+        }
+    }
+}

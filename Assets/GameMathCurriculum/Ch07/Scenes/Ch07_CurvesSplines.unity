@@ -1094,18 +1094,29 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BeizierRandomMover
   spawnCount: 10
+<<<<<<< Updated upstream
   sphereSize: 0.29999998
   startPointTransform: {fileID: 236876101}
   endPointTransform: {fileID: 859482232}
   checkPointRangeMin: -5
   checkPointRangeMax: 5
+=======
+  sphereSize: 1
+  startPointTransform: {fileID: 236876101}
+  endPointTransform: {fileID: 859482232}
+  checkPointRangeMin: 1
+  checkPointRangeMax: 10
+>>>>>>> Stashed changes
   durationMin: 1
   durationMax: 3
   trailTime: 0.5
   trailWidth: 0.1
   showSphereMesh: 1
+<<<<<<< Updated upstream
   p1Point: 0.33
   p2Point: 0.66
+=======
+>>>>>>> Stashed changes
   trailMaterial: {fileID: 10306, guid: 0000000000000000f000000000000000, type: 0}
 --- !u!4 &1276386422
 Transform:
@@ -1310,6 +1321,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
+<<<<<<< Updated upstream
   m_text: ">roloc/<\uC808\uC870 \uB3C4\uC18D \uBCC4\uAC04\uAD6C \uB85CevruCnoitaminA>wolley=roloc<\n\r\n\r\uCD080.6
     :\uAE30\uC8FC\n\r\xD740.1 :\uC728\uBC30 \uB3C4\uC18D\n\r04.0 :Tlabolg\n\r\uAC1C5
     :\uC2A4\uBC15 / \uAC1C5 :\uD2B8\uC778\uD3EC\uC774\uC6E8\n\r\uC5B4\uC774\uBCA0\uCEE8
@@ -1317,6 +1329,12 @@ MonoBehaviour:
   m_isRightToLeft: 1
   m_fontAsset: {fileID: 11400000, guid: 173832a6eb54e9549bd9e42213cdd4fe, type: 2}
   m_sharedMaterial: {fileID: 3866381114057573719, guid: 173832a6eb54e9549bd9e42213cdd4fe, type: 2}
+=======
+  m_text: 
+  m_isRightToLeft: 0
+  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+>>>>>>> Stashed changes
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
