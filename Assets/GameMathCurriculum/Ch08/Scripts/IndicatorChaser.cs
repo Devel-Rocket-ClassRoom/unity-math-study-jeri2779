@@ -31,8 +31,7 @@ public class indicatorchase : MonoBehaviour
         }
 
  
-        bool isOnScreen =
-            !isBehind &&
+        bool isOnScreen = !isBehind &&
             screenPos.x > 0f && screenPos.x < Screen.width &&
             screenPos.y > 0f && screenPos.y < Screen.height;
 
@@ -45,27 +44,22 @@ public class indicatorchase : MonoBehaviour
         cg.alpha = 1f; // 화면 밖에 있으면 표시
         Vector2 center = new Vector2(Screen.width * 0.5f, Screen.height * 0.5f);
         Vector2 dir = new Vector2(screenPos.x - center.x, screenPos.y - center.y);
- 
-        float padding = 40f;        //화면 중앙에서 값만큼 떨어지게 설정.
+
+        float padding = 40f;        //중앙기준 설정값만큼 떨어지게 설정.
         float halfWidth = center.x - padding;
         float halfHeight = center.y - padding;
 
-      
+
         float scaleX = halfWidth / Mathf.Abs(dir.x);
         float scaleY = halfHeight / Mathf.Abs(dir.y);
-        float scale = Mathf.Min(scaleX, scaleY);
+        float scale = Mathf.Min(scaleX, scaleY);        //화면 밖으로 나가지 않도록 조정
 
         Vector2 clampedPos = dir * scale;
-        Vector2 finalScreenPos = center + clampedPos;
+        Vector2 finalScreenPos = center + clampedPos;   //중앙기준 조정된 위치로 계산
 
-    
+        // 스크린 좌표 -> 캔버스 로컬 좌표
         Vector2 localPos;
-        RectTransformUtility.ScreenPointToLocalPointInRectangle(
-            canvasRect,
-            finalScreenPos,
-            null,
-            out localPos
-        );
+        RectTransformUtility.ScreenPointToLocalPointInRectangle(canvasRect, finalScreenPos, null, out localPos);
         indicator.localPosition = localPos;
 
         // 방향으로 회전
