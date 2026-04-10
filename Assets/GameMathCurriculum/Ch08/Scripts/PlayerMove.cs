@@ -7,7 +7,7 @@ public class PlayerMove : MonoBehaviour
     [SerializeField] private float rotationSpeed  = 10f;  
 
     private PlayerInput playerInput;
-    private Rigidbody   rb;
+    private Rigidbody rb;
    
 
      
@@ -15,7 +15,7 @@ public class PlayerMove : MonoBehaviour
     void Start()
     {
         playerInput = GetComponent<PlayerInput>();
-        rb          = GetComponent<Rigidbody>();
+        rb = GetComponent<Rigidbody>();
       
 
         rb.freezeRotation = true; 
@@ -31,10 +31,10 @@ public class PlayerMove : MonoBehaviour
         Transform cam = Camera.main.transform;
 
         Vector3 camForward = new Vector3(cam.forward.x, 0f, cam.forward.z).normalized;
-        Vector3 camRight   = new Vector3(cam.right.x,   0f, cam.right.z  ).normalized;
+        Vector3 camRight   = new Vector3(cam.right.x, 0f, cam.right.z).normalized;
 
         Vector3 moveDir = camForward * playerInput.move
-                        + camRight   * playerInput.strafe;
+                        + camRight * playerInput.strafe;
 
         bool isMoving = moveDir.sqrMagnitude > 0.001f;
 

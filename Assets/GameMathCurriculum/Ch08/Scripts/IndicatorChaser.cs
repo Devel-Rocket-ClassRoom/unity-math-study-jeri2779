@@ -46,13 +46,13 @@ public class indicatorchase : MonoBehaviour
         Vector2 center = new Vector2(Screen.width * 0.5f, Screen.height * 0.5f);
         Vector2 dir = new Vector2(screenPos.x - center.x, screenPos.y - center.y);
  
-        float padding = 40f;
-        float halfW = center.x - padding;
-        float halfH = center.y - padding;
+        float padding = 40f;        //화면 중앙에서 값만큼 떨어지게 설정.
+        float halfWidth = center.x - padding;
+        float halfHeight = center.y - padding;
 
       
-        float scaleX = halfW / Mathf.Abs(dir.x);
-        float scaleY = halfH / Mathf.Abs(dir.y);
+        float scaleX = halfWidth / Mathf.Abs(dir.x);
+        float scaleY = halfHeight / Mathf.Abs(dir.y);
         float scale = Mathf.Min(scaleX, scaleY);
 
         Vector2 clampedPos = dir * scale;

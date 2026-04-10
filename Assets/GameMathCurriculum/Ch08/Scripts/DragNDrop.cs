@@ -20,11 +20,11 @@ public class DragNDrop : MonoBehaviour
     void Start()
     {
         Collider col = GetComponent<Collider>();
-        if (col != null)
-        {
-            yOffset = col.bounds.extents.y;
+        //if (col != null)
+        //{
+        //    yOffset = col.bounds.extents.y;
 
-        }
+        //}
 
         //transform.position 이동 시 OnTriggerEnter 감지에 Rigidbody 필요
         Rigidbody rb = GetComponent<Rigidbody>();
@@ -65,7 +65,9 @@ public class DragNDrop : MonoBehaviour
 
                 //dropzone 밖에서 시작할 때 복귀 지점 갱신
                 if (!dropZone.IsInZone())
+                {
                     startPos = transform.position;
+                }
 
                 currentState = state.Dragging;
             }
@@ -79,7 +81,7 @@ public class DragNDrop : MonoBehaviour
         RaycastHit hit;
         if (Physics.Raycast(ray, out hit, Mathf.Infinity, terrainLayer))
         {
-            tgtPos = hit.point + Vector3.up * yOffset;
+            tgtPos = hit.point;// + Vector3.up * yOffset;
             transform.position = tgtPos;
         }
       
@@ -89,7 +91,7 @@ public class DragNDrop : MonoBehaviour
             currentState = state.Dropping;   //드롭 상태로 전환
             if (dropZone.IsInZone())
             {
-                tgtPos = dropZone.GetCenterPosition() + Vector3.up * yOffset;       //존 중심으로 이동
+                tgtPos = dropZone.GetCenterPosition();// + Vector3.up * yOffset;  //존 중심으로 이동
             }
             else
             {
@@ -104,23 +106,34 @@ public class DragNDrop : MonoBehaviour
 
         //터레인 표면을 따라 이동
         Ray ray = new Ray(smoothed + Vector3.up * 100f, Vector3.down);//
-        if (Physics.Raycast(ray, out RaycastHit hit, Mathf.Infinity, terrainLayer))
+        RaycastHit hit;
+        if (Physics.Raycast(ray, out hit, Mathf.Infinity, terrainLayer))
         {
             smoothed.y = hit.point.y + yOffset;                     //  y값 조정
         }
 
-        transform.position = smoothed;
 
         //Y는 terrain 표면에 맞춰 조정되므로 xz만 계산
         float checkDist = Vector2.Distance(
             new Vector2(transform.position.x, transform.position.z),
             new Vector2(tgtPos.x, tgtPos.z));
+        transform.position = smoothed;
 
         if (checkDist < 0.01f)                     //smoothed가 tgtPos에 거의 도달했는지 확인(임계값 체크용)
         {
-            transform.position = tgtPos;        //정확히 tgtPos로 이동
+            transform.position = tgtPos;        //tgtPos로 이동
+            
             currentState = state.Idle;          //Idle 상태전환
         }
+    }
+
+    public void SetCurrentZone(DropZone zone)//dropzone이 여러개일때 구분용 메서드
+    {
+        dropZone = zone;
+    }
+    public void ClearCurrentZone()
+    {
+        dropZone = null;
     }
 
 }

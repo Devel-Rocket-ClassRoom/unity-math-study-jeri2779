@@ -24,11 +24,11 @@ public class DropZone : MonoBehaviour
         {
             Vector3 centerPosition = transform.position;
             Collider col = GetComponent<Collider>();
-            if (col != null)
-            {
-                centerPosition.y = col.bounds.max.y;//콜라이더 y값의 제일 위로 설정 
+            //if (col != null)
+            //{
+            //    centerPosition.y = col.bounds.max.y;//콜라이더 y값의 제일 위로 설정 
 
-            }
+            //}
             return centerPosition;
 
         }
@@ -39,7 +39,13 @@ public class DropZone : MonoBehaviour
         if (other.CompareTag("DragObject"))
         {
             isOnjectInZone = true;
-            Debug.Log("Object entered the drop zone.");
+            DragNDrop dragNDrop = other.GetComponent<DragNDrop>();
+            if (dragNDrop != null)
+            {
+                dragNDrop.SetCurrentZone(this);
+            }
+
+            Debug.Log(" entered");
         }
     }
 
@@ -48,7 +54,12 @@ public class DropZone : MonoBehaviour
         if (other.CompareTag("DragObject"))
         {
             isOnjectInZone = false;
-            Debug.Log("Object exited the drop zone.");
+                DragNDrop dragNDrop = other.GetComponent<DragNDrop>();
+            if(dragNDrop != null)
+            {
+                dragNDrop.ClearCurrentZone();
+            }
+            Debug.Log("exited");
         }
     }
 }
